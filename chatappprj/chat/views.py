@@ -18,12 +18,12 @@ def room(request, room):
 
 
 def checkview(request):
-      #room1 = Room()
+      
       room = request.POST['room_name']
       username = request.POST['username']
 
       if Room.objects.filter(name=room).exists():
-            return redirect('/'+room+'/?username='+username) # direkt odaya yönlendirmesini istiyoruz.
+            return redirect('/'+room+'/?username='+username) 
       else:
             new_room = Room.objects.create(name=room)
             new_room.save()
@@ -36,7 +36,7 @@ def send(request):
 
       new_message = Message.objects.create(value=message, user=username, room=room_id)
       new_message.save()
-      #return HttpResponse("MERHABA, Mesajınız başarıyla gönderildi!!")
+      return HttpResponse("MERHABA, Mesajınız başarıyla gönderildi!!")
 
 def getMessages(request, room):
       room_details = Room.objects.get(name=room)
